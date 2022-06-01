@@ -1,0 +1,26 @@
+{
+  "name": "myflix-client",
+  "version": "1.0.0",
+  "description": "",
+  "default": "src/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hrefn/myflix-client.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hrefn/myflix-client/issues"
+  },
+  "homepage": "https://github.com/hrefn/myflix-client#readme",
+  "dependencies": {
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.0.0-rc.0"
+  }
+}
