@@ -1,21 +1,90 @@
+import axios from 'axios';
 import React from 'react';
+import Button from 'react-bootstrap/Button'
+import { Route, Link } from 'react-router-dom';
 
 export class MovieView extends React.Component {
 
-  keypressCallback (event) {
-    console.log(event.key);
+  constructor (props) {
+    super(props);
+    this.state = {
+      Username: null,
+      Password: null,
+      Email: null,
+      Birthday: null,
+      FavoriteMovies: []
+    };
+  }
+  
+  getUser () {
+    let user = localStorage.getItem('user');
+    let token = localStorage.getItem('token')
+
+    axios.get(`https://myflix-db-54469.herokuapp.com/users/${user}`, {
+      headers: { Authorization: `Bearer ${token}`}
+    })
+    .then(response => {
+      this.setState({
+        Username: response.data.Username,
+        Password: response.data.Password,
+        Email: response.data.Email,
+        Birthday: response.data.Birthday,
+        FavoriteMovies: response.data.FavoriteMovies
+      })
+    })
+    .catch(error => {
+      console.error(error)
+    })
   }
 
   componentDidMount () {
-    document.addEventListener('keypress', this.keypressCallback);
+    this.getUser()
   }
 
-  componentWillUnmount () {
-    document.removeEventListener('keypress', this.keypressCallback);
+  addFavoriteMovie = () => {
+    let user = localStorage.getItem('user');
+    let token = localStorage.getItem('token')
+    let favoriteMovies = this.state.FavoriteMovies;
+    let isFav = favoriteMovies.includes(this.props.movie._id);
+
+    if (!isFav) {
+      axios.post(`https://myflix-db-54469.herokuapp.com/users/${user}/movies/${this.props.movie._id}`, {}, {
+        headers: { Authorization: `Bearer ${token}`}
+      })
+      .then(response => {
+        console.log(response.data);
+        window.open(`/movies/${this.props.movie._id}`, '_self');
+      })
+      .catch(error => {
+        console.error(error)
+      });
+    } else if (isFav) {
+      alert(`${this.props.movie.Title} is already favorited`)
+    }
+  }
+
+  deleteFavoriteMovie = () => {
+    let user = localStorage.getItem('user');
+    let token = localStorage.getItem('token');
+
+    axios.delete(`https://myflix-db-54469.herokuapp.com/users/${user}/movies/${this.props.movie._id}`, {
+      headers: { Authorization: `Bearer ${token}`}
+    })
+    .then(response => {
+      console.log(response.data);
+      alert(`${this.props.movie.Title} has been unfavorited`)
+      window.open(`/movies/${this.props.movie._id}`, '_self');
+    })
+    .catch(error => {
+      console.error(error);
+    });
   }
 
   render () {
     const { movie, onBackClick } = this.props;
+    const { FavoriteMovies, Username, Password, Email, Birthday } = this.state;
+    let favoriteMovies = this.state.FavoriteMovies;
+    let isFav = favoriteMovies.includes(this.props.movie._id);
 
     return (
       <div className='movie-view'>
@@ -46,7 +115,20 @@ export class MovieView extends React.Component {
             <span>{movie.Genre.Description}</span>
           </div>
         </div>
-        <button onClick={() => { onBackClick(null); }}>Back</button>
+        <Link to={`genres/${movie.Genre.Name}`}>
+          <Button variant="link">Genre</Button>
+        </Link>
+        <Link to={`/directors/${movie.Director.Name}`}>
+          <Button variant="link">Director</Button>
+        </Link>
+        <Button onClick={() => { onBackClick(); }}>Back</Button>
+        
+        {!isFav && (
+          <Button className="add-list__button" variant="warning" onClick={this.addFavoriteMovie}>Add to Favorites</Button>
+        )}
+        {isFav && (
+          <Button className="add-list__button" variant="warning" onClick={this.deleteFavoriteMovie}>Unfavorite</Button>
+        )}
       </div>
     );
   }
