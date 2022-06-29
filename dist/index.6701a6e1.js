@@ -25265,7 +25265,6 @@ class MainView extends _reactDefault.default.Component {
                 }),
                 /*#__PURE__*/ _jsxRuntime.jsxs(_rowDefault.default, {
                     className: "main-view justify-content-md-center",
-                    mt: "2",
                     __source: {
                         fileName: "src/components/main-view/main-view.jsx",
                         lineNumber: 69
@@ -45575,7 +45574,6 @@ class MovieCard extends _reactDefault.default.Component {
             bg: "dark",
             text: "light",
             id: "movie-card",
-            mt: "15px",
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
                 lineNumber: 13
@@ -47410,7 +47408,7 @@ function VisibilityFilterInput(props) {
         onChange: (e)=>props.setFilter(e.target.value)
         ,
         value: props.visibilityFilter,
-        placeholder: "filter",
+        placeholder: "search",
         __source: {
             fileName: "src/components/visibility-filter-input/visibility-filter-input.jsx",
             lineNumber: 9
