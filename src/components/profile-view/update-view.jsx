@@ -39,33 +39,28 @@ export function UpdateView(props) {
   }
 
   return (
-    <Container id="update-view" className="mt-5">
-      <Row><h4>Edit Profile</h4></Row>
-      <Row>
-        <Col sm="10" md="8" lg="6">
-          <Form>
-            <Form.Group controlId="formUsername">
-              <Form.Label>Username:</Form.Label>
-              <Form.Control type="text" value={username} onChange={e => setUsername(e.target.value)} />
-            </Form.Group>
-            <Form.Group controlId="formPassword">
-              <Form.Label>Password:</Form.Label>
-              <Form.Control type="password" value={password} onChange={e => setPassword(e.target.value)} />
-            </Form.Group>
-            <Form.Group controlId="Email">
-              <Form.Label>Email:</Form.Label>
-              <Form.Control type="email" value={email} onChange={e => setEmail(e.target.value)} />
-            </Form.Group>
-            <Form.Group controlId="formBirthday">
-              <Form.Label>Birthday:</Form.Label>
-              <Form.Control type="date" value={birthday} onChange={e => setBirthday(e.target.value)} />
-            </Form.Group>
-            <Form.Group className="mt-3">
-              <Button variant="warning" type="submit" onClick={handleSubmit}>Edit Profile</Button>
-            </Form.Group>
-          </Form>
-        </Col>
-      </Row>
+    <Container id="update-view" className="mt-0">
+      <Form>
+        <Form.Group controlId="formUsername">
+          <Form.Label>Username:</Form.Label>
+          <Form.Control type="text" value={username} onChange={e => setUsername(e.target.value)} />
+        </Form.Group>
+        <Form.Group controlId="formPassword">
+          <Form.Label>Password:</Form.Label>
+          <Form.Control type="password" value={password} onChange={e => setPassword(e.target.value)} />
+        </Form.Group>
+        <Form.Group controlId="Email">
+          <Form.Label>Email:</Form.Label>
+          <Form.Control type="email" value={email} onChange={e => setEmail(e.target.value)} />
+        </Form.Group>
+        <Form.Group controlId="formBirthday">
+          <Form.Label>Birthday:</Form.Label>
+          <Form.Control type="date" value={birthday} onChange={e => setBirthday(e.target.value)} />
+        </Form.Group>
+        <Form.Group className="mt-3">
+          <Button variant="warning" type="submit" onClick={handleSubmit}>Edit Profile</Button>
+        </Form.Group>
+      </Form>
     </Container>
   )
 }

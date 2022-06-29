@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import { Button, Col, Container, Row } from 'react-bootstrap';
+import { Button, Col, Container, Row, Card } from 'react-bootstrap';
 
 import { UpdateView } from "./update-view";
+import { UserInfo } from "./user-info";
 import { MovieCard } from "../movie-card/movie-card";
 
 import './profile-view.scss';
@@ -46,10 +47,10 @@ export function ProfileView (props) {
     if (movies.length === 0) return <div className="main-view" />
 
     return (
-      <Row className="justify-content-md-center">
+      <Row className="justify-content-start">
         {favoriteMovies.length === 0 ? (<p>You don't have any favorite movies</p>) : (
           favoriteMovies.map((movie) => (
-            <Col md={6} lg={4} key={movie}>
+            <Col md={6} lg={4} key={movie} className="h-100">
               <MovieCard movie={movies.find(m => m._id == movie)} />
             </Col>
           ))
@@ -79,28 +80,27 @@ export function ProfileView (props) {
 
   return (
     <Container id="profile-view">
-      <Row><h4>{user.Username}</h4></Row>
-      <Row>
-        <Col className="label">Username:</Col>
-        <Col className="value">{user.Username}</Col>
+      <Row id="profile-info">
+        <Col xs={12} sm={4} className="align-items-stretch">
+          <Card bg="dark" text="light">
+            <Card.Body>
+              <UserInfo user={user} />
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col sm={8} className="align-items-stretch">
+          <Card bg="dark" text="light">
+            <Card.Body>
+              <h4>Edit Profile</h4>
+              <UpdateView user={user} />
+            </Card.Body>
+          </Card>
+        </Col>
       </Row>
       <Row>
-        <Col className="label">Password:</Col>
-        <Col className="value">****</Col>
+        <h4>Favorite Movies:</h4>
+        {renderFavorites()}
       </Row>
-      <Row>
-        <Col className="label">Email:</Col>
-        <Col className="value">{user.Email}</Col>
-      </Row>
-      <Row>
-        <Col className="label">Birthday:</Col>
-        <Col className="value">{user.Birthday}</Col>
-      </Row>
-      <Row>
-        <Col className="label">Favorite Movies:</Col>
-      </Row>
-      {renderFavorites()}
-      <UpdateView user={user} />
       <Button className="d-block mt-5" variant="warning" onClick={handleDelete}>Delete Profile</Button>
     </Container>
   )

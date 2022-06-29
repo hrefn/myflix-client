@@ -60,8 +60,8 @@ export function LoginView (props) {
         <Form.Control type="password" onChange={e => setPassword(e.target.value)} />
         {passwordErr && <p>{passwordErr}</p>}
       </Form.Group>
-      <Button variant="primary" type="submit" onClick={handleSubmit}>Submit</Button>
-      <Button onClick={() => { props.onRegistrationClick(true) }}>Register</Button>
+      <Button variant="primary" type="submit" onClick={handleSubmit}>Login</Button>
+      <Button onClick={() => { window.open('/register', '_self') }}>Register</Button>
     </Form>
   );
 }
