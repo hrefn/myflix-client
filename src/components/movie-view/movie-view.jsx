@@ -2,6 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import Button from 'react-bootstrap/Button'
 import { Route, Link } from 'react-router-dom';
+import './movie-view.scss';
 
 export class MovieView extends React.Component {
 
@@ -88,8 +89,8 @@ export class MovieView extends React.Component {
 
     return (
       <div className='movie-view'>
-        <div className='movie-poster'>
-          <img src={movie.ImagePath} />
+        <div className='movie-poster-container' style={{textAlign: 'center'}} >
+          <img className='movie-poster' crossOrigin='anonymous' src={movie.ImagePath} style={{  height: 'auto', width: 'auto', 'max-width': '500px', 'max-height': '500px'}} />
         </div>
         <div className='movie-title'>
           <span className='label'>Title: </span>
