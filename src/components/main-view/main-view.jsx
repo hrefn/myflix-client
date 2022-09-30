@@ -28,7 +28,10 @@ class MainView extends React.Component {
 
   getMovies(token) {
     axios.get('https://myflix-db-54469.herokuapp.com/movies', {
-      headers: { Authorization: `Bearer ${token}`}
+      headers: {
+        'Access-Control-Allow-Origin': 'true',
+        Authorization: `Bearer ${token}`,
+    },
     })
     .then(response => {
       this.props.setMovies(response.data);
