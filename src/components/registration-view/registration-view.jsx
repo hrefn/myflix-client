@@ -71,19 +71,19 @@ export function RegistrationView (props) {
       <Form.Group controlId="formUsername">
         <Form.Label>Username:</Form.Label>
         <Form.Control type="text" value={username} onChange={e => setUsername(e.target.value)} />
-        {usernameErr && <p>{usernameErr}</p>}
+        {usernameErr && <p style={{ color: 'red'}}>{usernameErr}</p>}
       </Form.Group>
 
       <Form.Group controlId="formPassword">
         <Form.Label>Password:</Form.Label>
         <Form.Control type="password" value={password} onChange={e => setPassword(e.target.value)} />
-        {passwordErr && <p>{passwordErr}</p>}
+        {passwordErr && <p style={{ color: 'red'}}>{passwordErr}</p>}
       </Form.Group>
 
       <Form.Group controlId="Email">
         <Form.Label>Email:</Form.Label>
         <Form.Control type="email" value={email} onChange={e => setEmail(e.target.value)}/>
-        {emailErr && <p>{emailErr}</p>}
+        {emailErr && <p style={{ color: 'red'}}>{emailErr}</p>}
       </Form.Group>
 
       <Form.Group controlId="updateBirthday">

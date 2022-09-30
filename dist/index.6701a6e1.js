@@ -35623,6 +35623,9 @@ function RegistrationView(props) {
                         __self: this
                     }),
                     usernameErr && /*#__PURE__*/ _jsxRuntime.jsx("p", {
+                        style: {
+                            color: 'red'
+                        },
                         __source: {
                             fileName: "src/components/registration-view/registration-view.jsx",
                             lineNumber: 74
@@ -35660,6 +35663,9 @@ function RegistrationView(props) {
                         __self: this
                     }),
                     passwordErr && /*#__PURE__*/ _jsxRuntime.jsx("p", {
+                        style: {
+                            color: 'red'
+                        },
                         __source: {
                             fileName: "src/components/registration-view/registration-view.jsx",
                             lineNumber: 80
@@ -35697,6 +35703,9 @@ function RegistrationView(props) {
                         __self: this
                     }),
                     emailErr && /*#__PURE__*/ _jsxRuntime.jsx("p", {
+                        style: {
+                            color: 'red'
+                        },
                         __source: {
                             fileName: "src/components/registration-view/registration-view.jsx",
                             lineNumber: 86
